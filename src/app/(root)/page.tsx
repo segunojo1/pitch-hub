@@ -3,6 +3,7 @@ import SearchForm from "@/components/search-form";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { auth } from "../../../auth";
 
 const Home = async ({ searchParams }: { searchParams: Promise<{ query: string }> }) => {
   // const response = await fetch("http://localhost:3000/api/books")
@@ -17,10 +18,15 @@ const Home = async ({ searchParams }: { searchParams: Promise<{ query: string }>
   // const books2 = await resp2.json()
   // console.log(books2);
   const query = (await searchParams).query;
-  const params = { search: query || null }
+  const params = { search: query || null };
+
+  const session = await auth();
+
+  console.log(session?.id);
+  
   // const posts = await client.fetch(STARTUPS_QUERY);
   const { data: posts } = await sanityFetch({query: STARTUPS_QUERY, params})
-  console.log(JSON.stringify(posts, null, 2));
+  // console.log(JSON.stringify(posts, null, 2));
   
   // const posts = [{
   //   _createdAt: new Date(),

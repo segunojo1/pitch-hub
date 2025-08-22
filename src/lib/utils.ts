@@ -12,3 +12,7 @@ export function formatDate(date: string) {
         day: "numeric",
     })
 }
+
+export function formatView(number: number) {
+  return number > 1 || number == 0 ? "Views" : "View"
+}
