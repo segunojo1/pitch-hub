@@ -31,7 +31,7 @@ const ProjectCard = ({ post }: { post: StartupTypeCard }) => {
                     </Link>
                 </div>
                 <Link href={`/user/${author?._id}`}>
-                <Image src="https://placehold.co/600x400" alt="startup" width={48} height={48} className="rounded-full" />
+                <Image src={author?.image} alt="startup" width={48} height={48} className="rounded-full" />
                 </Link>
             </div>
             <Link href={`/startup/${_id}`}>
